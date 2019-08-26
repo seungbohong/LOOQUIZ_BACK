@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="quiz">
+
+	
+
+    <delete id="deleteQ" parameterType="qdto">
+		delete from quiz where uid = #{uid} and qid = #{qid}
+	</delete>
+
+	<select id="" resultType="mdto">
+    	select uid from member where uname=#{uname} and email=#{email}
+    </select>
+
+
+</mapper>
