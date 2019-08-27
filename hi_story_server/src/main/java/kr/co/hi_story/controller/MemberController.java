@@ -16,15 +16,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.hi_story.dto.MemberDTO;
-import kr.co.hi_story.dto.MessageDTO;
 import kr.co.hi_story.service.MemberService;
-import kr.co.hi_story.util.jwt.JwtInterceptor;
-import kr.co.hi_story.util.jwt.JwtService;
 
 import static kr.co.hi_story.dto.MessageDTO.FAIL_DEFAULT_RES;
 
