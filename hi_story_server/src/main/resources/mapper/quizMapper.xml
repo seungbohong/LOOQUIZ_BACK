@@ -4,15 +4,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="quiz">
 
-	
+	<insert id="createQ" parameterType="qdto">
+		insert into quiz
+		(uid,rname,dname,qname,qcontent1,qcontent2,qcontent3,qcontent4,qcontent5,hcontent,solution,answer,cityname)
+		values
+		(#{uid},#{rname},#{dname},#{qname},#{qcontent1},#{qcontent2},#{qcontent3},#{qcontent4},#{qcontent5},#{hcontent},#{solution},#{answer},#{cityname})
+	</insert>
 
     <delete id="deleteQ" parameterType="qdto">
 		delete from quiz where uid = #{uid} and qid = #{qid}
 	</delete>
+	
+	<select id= "rnameList" resultType="String">
+		select rname from region where cityname=#{cityname}
+	</select>
 
-	<select id="" resultType="mdto">
-    	select uid from member where uname=#{uname} and email=#{email}
+	<select id="successRate" resultType="pdto">
+    	select rname,oCount,totalCount from participation where rname=#{rname} and uid=#{uid}
     </select>
 
+	<update id="editingQuiz" parameterType="qdto">
+    	update quiz set rname=#{rname}, cityname=#{cityname}, dname=#{dname},qname=#{qname},qcontent1=#{qcontent1},qcontent2=#{qcontent2},qcontent3=#{qcontent3},qcontent4=#{qcontent4},qcontent5=#{qcontent5},hcontent=#{hcontent},solution=#{solution},answer=#{answer}
+    	where uid=#{uid} and qid=#{qid}
+    </update>
+    
+    <select id="quizQuestion" resultType="qdto">
+    	select * from quiz where qid=#{qid}
+    </select>
+    
+    <select id="takeQuizBefore" resultType="pdto">
+    	select * from participation where rname=#{rname} and uid=#{uid}
+    </select>
+    
+    <insert id="takeQuizStart" parameterType="pdto">
+		insert into participation (uid,rname) values (#{uid},#{rname})
+	</insert>
+	
+	<update id="takeQuizX">
+    	update participation set totalCount=totalCount+1 where uid=#{uid} and rname=#{rname}
+    </update>
 
+	<update id="takeQuizO">
+    	update participation set totalCount=totalCount+1, oCount=oCount+1 where uid=#{uid} and rname=#{rname}
+    </update>	
+    
+    <select id="cityList" resultType="String">
+    	select distinct cityname from region 
+    </select>
+    
 </mapper>
