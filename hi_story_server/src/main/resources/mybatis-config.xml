@@ -6,6 +6,7 @@
 	<typeAliases>
 		<typeAlias type="kr.co.hi_story.dto.MemberDTO" alias="mdto"></typeAlias>
 		<typeAlias type="kr.co.hi_story.dto.QuizDTO" alias="qdto"></typeAlias>
+		<typeAlias type="kr.co.hi_story.dto.ParticipationDTO" alias="pdto"></typeAlias>
 	</typeAliases>
 
 	<mappers>

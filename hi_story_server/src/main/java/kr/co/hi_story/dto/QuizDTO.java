@@ -11,11 +11,20 @@ public class QuizDTO {
     private String qcontent4;
     private String qcontent5;
     private String rname;
-    private String hcontent;
+    private String cityname;
+   
+	private String hcontent;
     private String codenum;
     private String solution;
     private String answer;
     
+    
+    public String getCityname() {
+		return cityname;
+	}
+	public void setCityname(String cityname) {
+		this.cityname = cityname;
+	}
 	public String getAnswer() {
 		return answer;
 	}
