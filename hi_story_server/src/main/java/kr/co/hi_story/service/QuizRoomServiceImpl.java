@@ -40,18 +40,23 @@ public class QuizRoomServiceImpl implements QuizRoomService {
 
 	@Override
 	public DataDTO makeRoom(QuizRoomDTO dto) {
+		qrdto = new QuizRoomDTO();
+		
 		int random=0;
 		while(true) {
 			random = (int) (Math.random()*1000+1);
-			if(quizroomDAO.checkCodeNum(String.valueOf(random))==1) {
+			String codenum = dto.getQrname() + "#"+String.valueOf(random);
+			if(quizroomDAO.checkCodeNum(codenum)==1) {
+				qrdto.setCodenum(codenum);
 				break;
 			}
 		}
+		qrdto.setUid(jwt.getUserID());
+		qrdto.setQrname(dto.getQrname());
+		qrdto.setEndtime(dto.getEndtime());
 		
-		String codenum = dto.getQrname() + "#"+String.valueOf(random);
-		
-		if(quizroomDAO.makeRoom(dto) ==1 ) {
-			String result = quizroomDAO.showCodeNum(dto);
+		if(quizroomDAO.makeRoom(qrdto) ==1 ) {
+			String result = quizroomDAO.showCodeNum(qrdto);
 			return DataDTO.resData(ResponseMessage.SUCCESS, result);
 		}
 		return DataDTO.resData(ResponseMessage.FAIL, null);

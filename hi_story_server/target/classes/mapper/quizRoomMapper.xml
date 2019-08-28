@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<insert id="makeRoom" parameterType="qdto">
-		insert into quizRoom (qrname,codenum,endtime) values #{qrname},#{codenum},#{endtime} 
+		insert into quizRoom values(#{uid},#{qrname},#{codenum},#{endtime})
 	</insert>
 	
 	<select id= "showCodeNum" resultType="String">
