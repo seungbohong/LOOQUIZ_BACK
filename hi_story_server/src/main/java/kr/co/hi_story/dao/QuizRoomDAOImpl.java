@@ -33,8 +33,10 @@ public class QuizRoomDAOImpl implements QuizRoomDAO{
 	}
 
 	@Override
-	public int checkCodeNum(String random) {
-		String result = mybatis.selectOne("qr.checkCodeNum",random);
+	public int checkCodeNum(String codenum) {
+		System.out.println(codenum);
+		String result = mybatis.selectOne("qr.checkCodeNum",codenum);
+		System.out.println(result);
 		if(result != null) {
 			return 0; // 쓰던거라 안됨
 		}else {

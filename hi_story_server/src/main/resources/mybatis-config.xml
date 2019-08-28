@@ -8,11 +8,13 @@
 		<typeAlias type="kr.co.hi_story.dto.QuizDTO" alias="qdto"></typeAlias>
 		<typeAlias type="kr.co.hi_story.dto.ParticipationDTO" alias="pdto"></typeAlias>
 		<typeAlias type="kr.co.hi_story.dto.UtilDTO" alias="udto"></typeAlias>
+		<typeAlias type="kr.co.hi_story.dto.QuizRoomDTO" alias="qrdto"></typeAlias>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mapper/memberMapper.xml" />
 		<mapper resource="mapper/quizMapper.xml" />
 		<mapper resource="mapper/utilMapper.xml" />
+		<mapper resource="mapper/quizRoomMapper.xml" />
 	</mappers>
 </configuration>
