@@ -17,5 +17,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select codenum from quizRoom where codenum=#{codenum}
 	</select>
 	
+	<insert id="roomUserInit" parameterType="qdto">
+		insert into roomUser values(#{uid},#{codenum})
+	</insert>
+	
+	<delete id="deleteRoom" parameterType="mdto">
+		delete from quizRoom where uid = #{uid} and codenum = #{codenum}
+	</delete>
 
+	<insert id="enterRoom" parameterType="qrdto">
+		insert into roomUser
+		values
+		(#{uid},#{codenum})
+	</insert>
+	
+	<select id= "makeRoomSearch" resultType="qrdto">
+		select codenum,qrname from quizRoom where uid=#{uid}
+	</select>
+	
+	<select id= "participateRoom" resultType="String">
+		select codenum from roomUser where uid=#{uid}
+	</select>
+	
+	<select id= "participateRoomInfo" resultType="qrdto">
+		select codenum,qrname from quizRoom where codenum=#{codenum}
+	</select>
+	
+	<select id= "uidList" resultType="String">
+		select uid from roomUser where codenum=#{codenum}
+	</select>
+	
 </mapper>

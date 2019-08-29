@@ -24,6 +24,15 @@ public class MemberDAOImpl implements MemberDAO{
 			return 0;
 		}
 	}
+	
+	@Override
+	public int checkPW(MemberDTO dto) throws Exception {
+		if(mybatis.selectOne("member.checkPW",dto)!=null) {
+			return 1; //비밀번호 맞음
+		}else {
+			return 0;
+		}
+	}
 
 	@Override
 	public int signUp(MemberDTO dto) {
@@ -64,7 +73,10 @@ public class MemberDAOImpl implements MemberDAO{
 		mybatis.delete("member.deleteMem",dto);
 		return 1;
 	}
-	
+	@Override
+	public MemberDTO memInfo(String uid) {
+		return mybatis.selectOne("member.checkID",uid);
+	}
 
 
 	

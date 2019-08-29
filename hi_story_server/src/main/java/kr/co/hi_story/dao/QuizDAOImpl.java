@@ -58,9 +58,9 @@ public class QuizDAOImpl implements QuizDAO{
 	public int takeQuizBefore(ParticipationDTO dto) {
 		ParticipationDTO p = mybatis.selectOne("quiz.takeQuizBefore",dto);
 		if(p != null) {
-			return 0; //ÄûÁî ¿¡ Âü¿©ÇÑÀûÀÌ ÀÖÀ½
+			return 0; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		}else {
-			return 1; //ÄûÁî¿¡ Âü¿©ÇÑÀûÀÌ ¾øÀ½ -> takeQuizStartÇØ¼­ ¸ÂÃá °¹¼ö 0À¸·Î ¼ÂÆÃ
+			return 1; //ï¿½ï¿½ï¿½î¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -> takeQuizStartï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		}
 	}
 	
@@ -87,9 +87,19 @@ public class QuizDAOImpl implements QuizDAO{
 		return result;
 	}
 	
-//	cityList
-//	List<String> result = mybatis.selectList("quiz.rnameList",dto);
-
+	
+	@Override
+	public List<String> regionQuizList(String rname) {
+		List<String> result = mybatis.selectList("quiz.regionQuizList",rname);
+		return result;
+	}
+	
+	
+	@Override
+	public List<QuizDTO> roomQuizList(String codenum) {
+		List<QuizDTO> result = mybatis.selectList("quiz.roomQuizList",codenum);
+		return result;
+	}
 
 	
 }

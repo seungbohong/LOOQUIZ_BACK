@@ -26,7 +26,7 @@ public class QuizController {
 	@Inject
 	private QuizService quizService;
 
-	// ÄûÁî »ý¼º
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@PostMapping("createQ")
 	public ResponseEntity createQ(@RequestBody QuizDTO dto) {
 		try {
@@ -37,7 +37,7 @@ public class QuizController {
 		}
 	}
 
-	// ÄûÁî »èÁ¦
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@DeleteMapping("deleteQ")
 	public ResponseEntity deleteQ(@RequestBody QuizDTO dto) {
 		try {
@@ -48,7 +48,7 @@ public class QuizController {
 		}
 	}
 
-	// ÄûÁî ´Þ¼º·ü
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
 	@GetMapping("successRate")
 	public ResponseEntity successRate(@RequestBody QuizDTO dto) {
 		try {
@@ -59,7 +59,7 @@ public class QuizController {
 		}
 	}
 
-	// ÄûÁî ¼öÁ¤
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@PutMapping("editingQuiz")
 	public ResponseEntity editingQuiz(@RequestBody QuizDTO dto) {
 		try {
@@ -70,7 +70,7 @@ public class QuizController {
 		}
 	}
 
-	// ÄûÁî Ç®±â Àü
+	// ï¿½ï¿½ï¿½ï¿½ Ç®ï¿½ï¿½ ï¿½ï¿½
 	@PostMapping("quizQuestion")
 	public ResponseEntity quizQuestion(@RequestBody QuizDTO dto) {
 		try {
@@ -81,7 +81,7 @@ public class QuizController {
 		}
 	}
 
-	// ÄûÁî Ç®°í ³­ ÈÄ
+	// ï¿½ï¿½ï¿½ï¿½ Ç®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
 	@PostMapping("takeQuiz")
 	public ResponseEntity takeQuiz(@RequestBody ParticipationDTO pdto) {
 		try {
@@ -92,7 +92,7 @@ public class QuizController {
 		}
 	}
 
-	// ÀüÃ¼ µµ½Ã¸®½ºÆ®
+	// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½Æ®
 	@GetMapping("rnameList")
 	public ResponseEntity rnameList(@RequestParam("cityname") String cityname) {
 		try {
@@ -103,7 +103,7 @@ public class QuizController {
 		}
 	}
 
-	// ÀüÃ¼ Áöµµ µµ½Ã Å¬¸¯ ¼¼ºÎ À¯ÀûÁö ¸®½ºÆ®
+	// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 	@GetMapping("cityList")
 	public ResponseEntity cityList() {
 		try {
@@ -113,4 +113,28 @@ public class QuizController {
 			return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+	// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+	@PostMapping("regionQuizList")
+	public ResponseEntity regionQuizList(@RequestBody QuizDTO dto) {
+		try {
+			return new ResponseEntity<>(quizService.regionQuizList(dto.getRname()), HttpStatus.OK);
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@PostMapping("roomQuizList")
+	public ResponseEntity roomQuizList(@RequestBody QuizDTO dto) {
+		try {
+			return new ResponseEntity<>(quizService.roomQuizList(dto.getCodenum()), HttpStatus.OK);
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	
+	
 }

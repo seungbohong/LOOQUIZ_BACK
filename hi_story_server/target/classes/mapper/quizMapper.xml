@@ -6,9 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="createQ" parameterType="qdto">
 		insert into quiz
-		(uid,rname,dname,qname,qcontent1,qcontent2,qcontent3,qcontent4,qcontent5,hcontent,solution,answer,cityname)
+		(uid,codenum,rname,dname,qname,qcontent1,qcontent2,qcontent3,qcontent4,qcontent5,hcontent,solution,answer,cityname)
 		values
-		(#{uid},#{rname},#{dname},#{qname},#{qcontent1},#{qcontent2},#{qcontent3},#{qcontent4},#{qcontent5},#{hcontent},#{solution},#{answer},#{cityname})
+		(#{uid},#{codenum},#{rname},#{dname},#{qname},#{qcontent1},#{qcontent2},#{qcontent3},#{qcontent4},#{qcontent5},#{hcontent},#{solution},#{answer},#{cityname})
 	</insert>
 
     <delete id="deleteQ" parameterType="qdto">
@@ -52,4 +52,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	select distinct cityname from region 
     </select>
     
+    <select id="regionQuizList" resultType="qdto">
+    	select qid,dname,qname from quiz where rname=#{rname}
+    </select>
+    
+    <select id="roomQuizList" resultType="qdto">
+    	select qid,dname,qname from quiz where codenum=#{codenum}
+    </select>
 </mapper>
