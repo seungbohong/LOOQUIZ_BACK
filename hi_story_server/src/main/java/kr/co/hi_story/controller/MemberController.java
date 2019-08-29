@@ -32,7 +32,7 @@ public class MemberController {
 	
 	
 
-	// ¾ÆÀÌµð Áßº¹ È®ÀÎ
+	// ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½ È®ï¿½ï¿½
 	@GetMapping("checkID")
 	public ResponseEntity checkID(@RequestParam("uid") String uid) {
 		try {
@@ -42,8 +42,18 @@ public class MemberController {
 			return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@PostMapping("checkPW")
+	public ResponseEntity checkPW(@RequestBody MemberDTO dto) {
+		try {
+			return new ResponseEntity<>(memberService.checkPW(dto), HttpStatus.OK);
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
-	// È¸¿ø °¡ÀÔ
+	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@PostMapping("signUp")
 	public ResponseEntity signUp(@RequestBody MemberDTO dto) {
 		try {
@@ -54,7 +64,7 @@ public class MemberController {
 		}
 	}
 
-	// ·Î±×ÀÎ
+	// ï¿½Î±ï¿½ï¿½ï¿½
 	@PostMapping("signIn")
 	public ResponseEntity signIn(@RequestBody MemberDTO dto,HttpServletResponse response) {
 		try {
@@ -65,7 +75,7 @@ public class MemberController {
 		}
 	}
 
-	// ·Î±×¾Æ¿ô
+	// ï¿½Î±×¾Æ¿ï¿½
 	@GetMapping("logOut")
 	public ResponseEntity logOut(@RequestHeader(value="Authorization") String Authorization,HttpServletResponse response) {
 		try {
@@ -77,7 +87,7 @@ public class MemberController {
 		}
 	}
 
-	// ¾ÆÀÌµð Ã£±â
+	// ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½
 	@GetMapping("findID")
 	public ResponseEntity findID(@RequestParam("uname") String uname,@RequestParam("email") String email) {
 		try {
@@ -88,7 +98,7 @@ public class MemberController {
 		}
 	}
 
-	// ºñ¹Ð¹øÈ£ Ã£±â
+	// ï¿½ï¿½Ð¹ï¿½È£ Ã£ï¿½ï¿½
 	@GetMapping("findPW")
 	public ResponseEntity findPW(@RequestParam("email") String email,@RequestParam("uid") String uid) {
 		try {
@@ -101,7 +111,7 @@ public class MemberController {
 		}
 	}
 
-	// ºñ¹Ð¹øÈ£ ¼öÁ¤ 
+	// ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½ 
 	@PutMapping("updateMember")
 	public ResponseEntity updateMember(@RequestBody MemberDTO dto) {
 		try {
@@ -112,7 +122,7 @@ public class MemberController {
 		}
 	}
 
-	// È¸¿ø Å»Åð
+	// È¸ï¿½ï¿½ Å»ï¿½ï¿½
 	@DeleteMapping("deleteMem")
 	public ResponseEntity deleteMem(@RequestBody MemberDTO dto) {
 		try {
