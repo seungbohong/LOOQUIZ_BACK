@@ -42,6 +42,7 @@ public class QuizServiceImpl implements QuizService {
 	public MessageDTO createQ(QuizDTO dto) {
 		qdto = new QuizDTO();
 		qdto.setUid(jwt.getUserID());
+		qdto.setCodenum(dto.getCodenum());
 		qdto.setRname(dto.getRname());
 		qdto.setDname(dto.getDname());
 		qdto.setQname(dto.getQname());
@@ -141,7 +142,7 @@ public class QuizServiceImpl implements QuizService {
 			quizDAO.takeQuizStart(pdto);
 		}
 		
-		//true = Á¤´ä
+		//true = ï¿½ï¿½ï¿½ï¿½
 		if(dto.getResult() == 1) {
 			quizDAO.takeQuizO(pdto);
 		}else {
@@ -165,6 +166,29 @@ public class QuizServiceImpl implements QuizService {
 	public DataDTO cityList() {
 		
 		List<String> result = quizDAO.cityList();
+		
+		if (result != null) {
+			return DataDTO.resData(ResponseMessage.SUCCESS, result);
+		}
+		return DataDTO.resData(ResponseMessage.FAIL, null);
+	}
+	
+	@Override
+	public DataDTO regionQuizList(String rname) {
+		
+		List<String> result = quizDAO.regionQuizList(rname);
+		
+		if (result != null) {
+			return DataDTO.resData(ResponseMessage.SUCCESS, result);
+		}
+		return DataDTO.resData(ResponseMessage.FAIL, null);
+	}
+	
+	
+	@Override
+	public DataDTO roomQuizList(String codenum) {
+		
+		List<QuizDTO> result = quizDAO.roomQuizList(codenum);
 		
 		if (result != null) {
 			return DataDTO.resData(ResponseMessage.SUCCESS, result);
