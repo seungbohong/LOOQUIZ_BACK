@@ -44,6 +44,43 @@ public class QuizRoomDAOImpl implements QuizRoomDAO{
 		}
 	}
 
+	@Override
+	public int roomUserInit(QuizRoomDTO dto) {
+		mybatis.selectOne("qr.roomUserInit",dto);
+		return 1;
+	}
 	
+	@Override
+	public int deleteRoom(QuizRoomDTO dto) {
+		mybatis.delete("qr.deleteRoom",dto);
+		return 1;
+	}
 	
+	@Override
+	public int enterRoom(QuizRoomDTO dto) {
+		mybatis.insert("qr.enterRoom", dto);
+		return 1;
+	}
+	
+	@Override
+	public List<QuizRoomDTO> makeRoomSearch(QuizRoomDTO dto) {
+		return mybatis.selectList("qr.makeRoomSearch", dto);
+	}
+	
+	@Override
+	public List<String> participateRoom(QuizRoomDTO dto) {
+		return mybatis.selectList("qr.participateRoom", dto);
+	}
+	
+	@Override
+	public QuizRoomDTO participateRoomInfo(String codenum) {
+		return mybatis.selectOne("qr.participateRoomInfo", codenum);
+	}
+	
+	@Override
+	public List<String> uidList(String codenum) {
+		List<String> result = mybatis.selectList("qr.uidList",codenum);
+		return result;
+	}
+
 }
