@@ -37,6 +37,17 @@ public class UtilDAOImpl implements UtilDAO{
 		UtilDTO result = mybatis.selectOne("util.badge",bid);
 		return result;
 	}
+	
+	@Override
+	public int getUserBadge(UtilDTO dto) {
+		mybatis.insert("util.getUserBadge",dto);
+		return 1;
+	}
+
+	@Override
+	public int badgeRname(UtilDTO dto) {
+		return mybatis.selectOne("util.badgeRname",dto);
+	}
 
 	
 }

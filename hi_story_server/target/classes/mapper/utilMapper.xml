@@ -3,17 +3,27 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="util">
-	
-	<select id= "corpList" resultType="List">
-		select sname from storeList where bid=#{bid}
+
+	<select id="corpList" resultType="String">
+		select sname from storeList
+		where bid=#{bid}
 	</select>
 
-	<select id="userBadge" resultType="List">
-    	select bid from userBadge where uid=#{uid}
-    </select>
+	<select id="userBadge" resultType="Integer">
+		select bid from userBadge where uid=#{uid}
+	</select>
 
 	<select id="badge" resultType="udto">
-    	select * from badge where bid=#{bid}
-    </select>
+		select * from badge where bid=#{bid}
+	</select>
+
+	<select id="badgeRname" resultType="Integer">
+		select bid from badge where rname=#{rname}
+	</select>
+
+	<insert id="getUserBadge" parameterType="udto">
+		insert into userBadge values(#{uid}, #{bid})
+	</insert>
+
 
 </mapper>
