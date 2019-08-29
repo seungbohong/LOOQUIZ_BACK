@@ -27,4 +27,8 @@ public interface QuizDAO {
 	public int takeQuizO(ParticipationDTO dto);
 	
 	public List<String> cityList();
+
+	public List<String> regionQuizList(String rname);
+
+	public List<QuizDTO> roomQuizList(String codenum);
 }

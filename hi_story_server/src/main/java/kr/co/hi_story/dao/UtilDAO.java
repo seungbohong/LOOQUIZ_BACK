@@ -13,4 +13,8 @@ public interface UtilDAO {
 	public List<Integer> userBadge(String uid);
 	
 	public UtilDTO badge(int bid);
+
+	public int getUserBadge(UtilDTO dto);
+	
+	public int badgeRname(UtilDTO dto);
 }

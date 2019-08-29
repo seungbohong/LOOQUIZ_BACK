@@ -19,4 +19,8 @@ public interface MemberDAO {
 
 	public int deleteMem(MemberDTO dto);
 
+	public int checkPW(MemberDTO dto) throws Exception;
+
+	public MemberDTO memInfo(String uid);
+
 }

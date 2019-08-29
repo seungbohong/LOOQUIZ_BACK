@@ -41,6 +41,17 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return MessageDTO.resMessage(ResponseMessage.FAIL);
 	}
+	
+	@Override
+	public MessageDTO checkPW(MemberDTO dto) throws Exception {
+//		mdto = new MemberDTO();
+		mdto.setUid(jwt.getUserID());
+		mdto.setPw(dto.getPw());
+		if (memberDAO.checkPW(mdto) == 1) {
+			return MessageDTO.resMessage(ResponseMessage.SUCCESS);
+		}
+		return MessageDTO.resMessage(ResponseMessage.FAIL);
+	}
 
 	@Override
 	public MessageDTO signUp(MemberDTO dto) {
@@ -94,8 +105,8 @@ public class MemberServiceImpl implements MemberService {
 	public MessageDTO findPW(String uid, String email) {
 		System.out.println(2);
 		String setfrom = "kimhyungtaik@gmail.com";
-		String tomail = email; // ¹Þ´Â »ç¶÷ ÀÌ¸ÞÀÏ
-		String content = jwt.create("pw", uid, "findPW").substring(0, 10); // ³»¿ë
+		String tomail = email; // ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½
+		String content = jwt.create("pw", uid, "findPW").substring(0, 10); // ï¿½ï¿½ï¿½ï¿½
 		System.out.println(content);
 		
 		MemberDTO temp = new MemberDTO();
@@ -112,10 +123,10 @@ public class MemberServiceImpl implements MemberService {
 			SimpleMailMessage message = new SimpleMailMessage();
 //				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 
-			message.setSubject("ºñ¹Ð¹øÈ£º¯°æ");
-			message.setFrom(setfrom); // º¸³»´Â»ç¶÷ »ý·«ÇÏ°Å³ª ÇÏ¸é Á¤»óÀÛµ¿À» ¾ÈÇÔ
-			message.setTo(tomail); // ¹Þ´Â»ç¶÷ ÀÌ¸ÞÀÏ
-			message.setText(content); // ¸ÞÀÏ ³»¿ë
+			message.setSubject("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ï¿½ï¿½");
+			message.setFrom(setfrom); // ï¿½ï¿½ï¿½ï¿½ï¿½Â»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°Å³ï¿½ ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ûµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			message.setTo(tomail); // ï¿½Þ´Â»ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½
+			message.setText(content); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 			mailSender.send(message);
 			return MessageDTO.resMessage(ResponseMessage.SUCCESS);

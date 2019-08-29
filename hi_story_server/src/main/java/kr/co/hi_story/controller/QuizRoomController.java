@@ -39,4 +39,53 @@ public class QuizRoomController {
 		}
 	}
 
+	@PostMapping("enterRoom")
+	public ResponseEntity enterRoom(@RequestBody QuizRoomDTO dto) {
+		try {
+			return new ResponseEntity<>(quizroomService.enterRoom(dto), HttpStatus.OK);
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@DeleteMapping("deleteRoom")
+	public ResponseEntity deleteRoom(@RequestBody QuizRoomDTO dto) {
+		try {
+			return new ResponseEntity<>(quizroomService.deleteRoom(dto), HttpStatus.OK);
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@GetMapping("makeRoomSearch")
+	public ResponseEntity makeRoomSearch() {
+		try {
+			return new ResponseEntity<>(quizroomService.makeRoomSearch(), HttpStatus.OK);
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@GetMapping("participateRoom")
+	public ResponseEntity participateRoom() {
+		try {
+			return new ResponseEntity<>(quizroomService.participateRoom(), HttpStatus.OK);
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@PostMapping("searchMem")
+	public ResponseEntity searchMem(@RequestBody QuizRoomDTO dto) {
+		try {
+			return new ResponseEntity<>(quizroomService.searchMem(dto.getCodenum()), HttpStatus.OK);
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }

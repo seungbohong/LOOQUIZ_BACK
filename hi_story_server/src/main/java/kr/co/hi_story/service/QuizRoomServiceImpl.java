@@ -36,6 +36,9 @@ public class QuizRoomServiceImpl implements QuizRoomService {
 	QuizRoomDAO quizroomDAO;
 
 	@Inject
+	MemberDAO memberDAO;
+	
+	@Inject
 	JwtService jwt;
 
 	@Override
@@ -55,11 +58,74 @@ public class QuizRoomServiceImpl implements QuizRoomService {
 		qrdto.setQrname(dto.getQrname());
 		qrdto.setEndtime(dto.getEndtime());
 		
-		if(quizroomDAO.makeRoom(qrdto) ==1 ) {
+		if(quizroomDAO.makeRoom(qrdto) ==1 && quizroomDAO.roomUserInit(qrdto)==1) {
 			String result = quizroomDAO.showCodeNum(qrdto);
 			return DataDTO.resData(ResponseMessage.SUCCESS, result);
 		}
 		return DataDTO.resData(ResponseMessage.FAIL, null);
 	}
 	
+	@Override
+	public MessageDTO deleteRoom(QuizRoomDTO dto) {
+		qrdto = new QuizRoomDTO();
+		qrdto.setUid(jwt.getUserID());
+		qrdto.setCodenum(dto.getCodenum());
+		
+		if (quizroomDAO.deleteRoom(qrdto) == 1) {
+			return MessageDTO.resMessage(ResponseMessage.SUCCESS);
+		}
+		return MessageDTO.resMessage(ResponseMessage.FAIL);
+	}
+	
+	@Override
+	public MessageDTO enterRoom(QuizRoomDTO dto) {
+		qrdto = new QuizRoomDTO();
+		qrdto.setUid(jwt.getUserID());
+		qrdto.setCodenum(dto.getCodenum());
+		
+		if (quizroomDAO.enterRoom(qrdto) == 1) {
+			return MessageDTO.resMessage(ResponseMessage.SUCCESS);
+		}
+		return MessageDTO.resMessage(ResponseMessage.FAIL);
+	}
+	
+	@Override
+	public DataDTO makeRoomSearch() {
+		qrdto = new QuizRoomDTO();
+		qrdto.setUid(jwt.getUserID());
+		List<QuizRoomDTO> result = quizroomDAO.makeRoomSearch(qrdto);
+		if(result != null) {
+			return DataDTO.resData(ResponseMessage.SUCCESS, result);
+		}
+		return DataDTO.resData(ResponseMessage.FAIL, null);
+	}
+	
+	@Override
+	public DataDTO participateRoom() {
+		qrdto = new QuizRoomDTO();
+		qrdto.setUid(jwt.getUserID());
+		List<String> codenum = quizroomDAO.participateRoom(qrdto);
+		List<QuizRoomDTO> result = new ArrayList<>();
+		for(String object:codenum) {
+			System.out.println(object);
+			result.add(quizroomDAO.participateRoomInfo(object));
+		}
+		if(result != null) {
+			return DataDTO.resData(ResponseMessage.SUCCESS, result);
+		}
+		return DataDTO.resData(ResponseMessage.FAIL, null);
+	}
+	
+	@Override
+	public DataDTO searchMem(String codenum) {
+		List<String> uid = quizroomDAO.uidList(codenum);
+		List<MemberDTO> result = new ArrayList<>(); 
+		for (String object : uid) {
+			result.add(memberDAO.memInfo(object));
+		}
+		if (result != null) {
+			return DataDTO.resData(ResponseMessage.SUCCESS, result);
+		}
+		return DataDTO.resData(ResponseMessage.FAIL, null);
+	}
 }

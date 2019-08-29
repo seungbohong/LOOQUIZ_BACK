@@ -24,4 +24,6 @@ public interface MemberService {
 	public MessageDTO deleteMem(MemberDTO dto);
 	
 	public MessageDTO logOut(String Authorization);
+
+	public MessageDTO checkPW(MemberDTO dto) throws Exception;
 }

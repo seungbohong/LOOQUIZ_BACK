@@ -1,10 +1,19 @@
 package kr.co.hi_story.dto;
 
 public class UtilDTO {
-	private int bid; //¹îÁö °íÀ¯ ¹øÈ£	
-	private String rname; //¹îÁö ÀÌ¸§(µ¿ÀÏ)
-	private String img_url; //¹îÁö ÀÌ¹ÌÁö
-	private String sname; //store ÀÌ¸§
+	private String uid;
+	private int bid; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£	
+	private String rname; //ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½(ï¿½ï¿½ï¿½ï¿½)
+	private String img_url; //ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½
+	private String sname; //store ï¿½Ì¸ï¿½
+	
+	
+	public String getUid() {
+		return uid;
+	}
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
 	public int getBid() {
 		return bid;
 	}

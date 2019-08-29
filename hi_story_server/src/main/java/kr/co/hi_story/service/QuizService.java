@@ -26,6 +26,10 @@ public interface QuizService {
 	public DataDTO cityList();
 
 	public DataDTO rnameList(String cityname);
+
+	public DataDTO regionQuizList(String rname);
+
+	public DataDTO roomQuizList(String codenum);
 	
 	
 }

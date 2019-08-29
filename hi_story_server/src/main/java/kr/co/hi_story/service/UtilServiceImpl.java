@@ -41,7 +41,7 @@ public class UtilServiceImpl implements UtilService {
 	@Override
 	public DataDTO corpList(int bid) {
 		List<String> result = utilDAO.corpList(bid);
-
+		System.out.println(result);
 		if (result != null) {
 			return DataDTO.resData(ResponseMessage.SUCCESS, result);
 		}
@@ -60,6 +60,21 @@ public class UtilServiceImpl implements UtilService {
 		}else {
 			return DataDTO.resData(ResponseMessage.FAIL, null);
 		}
+	}
+	
+	
+	@Override
+	public MessageDTO getUserBadge(UtilDTO dto) {
+		udto = new UtilDTO();
+		udto.setRname(dto.getRname());
+		int bid = utilDAO.badgeRname(udto);
+		System.out.println("*******************"+bid);
+		udto.setUid(jwt.getUserID());
+		udto.setBid(bid);
 		
+		if (utilDAO.getUserBadge(udto) == 1) {
+			return MessageDTO.resMessage(ResponseMessage.SUCCESS);
+		}
+		return MessageDTO.resMessage(ResponseMessage.FAIL);
 	}
 }
