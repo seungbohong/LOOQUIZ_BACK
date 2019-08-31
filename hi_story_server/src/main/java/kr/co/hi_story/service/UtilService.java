@@ -13,4 +13,5 @@ public interface UtilService {
 
 	public MessageDTO getUserBadge(UtilDTO dto);
 
+	public DataDTO storeList();
 }

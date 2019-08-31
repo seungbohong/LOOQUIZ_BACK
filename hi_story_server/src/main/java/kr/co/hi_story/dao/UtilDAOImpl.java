@@ -48,6 +48,12 @@ public class UtilDAOImpl implements UtilDAO{
 	public int badgeRname(UtilDTO dto) {
 		return mybatis.selectOne("util.badgeRname",dto);
 	}
+	
+	@Override
+	public List<String> storeList() {
+		List<String> result = mybatis.selectList("util.storeList");
+		return result;
+	}
 
 	
 }

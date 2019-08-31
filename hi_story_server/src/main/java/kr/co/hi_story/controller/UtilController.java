@@ -60,7 +60,17 @@ public class UtilController {
 			return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@GetMapping("storeList")
+	public ResponseEntity storeList() {
+		try {
+			return new ResponseEntity<>(utilService.storeList(), HttpStatus.OK);
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 
+	}
 
 	
 }

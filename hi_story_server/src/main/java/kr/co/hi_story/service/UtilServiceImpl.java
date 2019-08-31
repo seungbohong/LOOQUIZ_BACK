@@ -42,7 +42,7 @@ public class UtilServiceImpl implements UtilService {
 	public DataDTO corpList(int bid) {
 		List<String> result = utilDAO.corpList(bid);
 		System.out.println(result);
-		if (result != null) {
+		if (result != null){
 			return DataDTO.resData(ResponseMessage.SUCCESS, result);
 		}
 		return DataDTO.resData(ResponseMessage.FAIL, null);
@@ -77,4 +77,18 @@ public class UtilServiceImpl implements UtilService {
 		}
 		return MessageDTO.resMessage(ResponseMessage.FAIL);
 	}
+		
+	@Override
+	public DataDTO storeList() {
+		
+		List<String> result = utilDAO.storeList();
+		
+		if (result != null) {
+			return DataDTO.resData(ResponseMessage.SUCCESS, result);
+		}
+		return DataDTO.resData(ResponseMessage.FAIL, null);
+	}
+
+	
+	
 }

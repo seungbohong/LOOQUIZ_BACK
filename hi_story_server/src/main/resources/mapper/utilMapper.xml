@@ -25,5 +25,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into userBadge values(#{uid}, #{bid})
 	</insert>
 
+	<select id="storeList" resultType="String">
+		select sname, rname from storeList order by rname desc
+	</select>
 
 </mapper>
