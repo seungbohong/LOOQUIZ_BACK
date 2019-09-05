@@ -7,7 +7,7 @@ import kr.co.hi_story.dto.QuizRoomDTO;
 
 
 public interface QuizRoomService {
-	public DataDTO  makeRoom(QuizRoomDTO dto);
+	public MessageDTO  makeRoom(QuizRoomDTO dto);
 
 	public MessageDTO deleteRoom(QuizRoomDTO dto);
 
