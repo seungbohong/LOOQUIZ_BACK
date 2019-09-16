@@ -45,10 +45,8 @@ public class QuizRoomServiceImpl implements QuizRoomService {
 	public MessageDTO makeRoom(QuizRoomDTO dto) {
 		qrdto = new QuizRoomDTO();
 		
-		int random=0;
 		while(true) {
-			random = (int) (Math.random()*1000+1);
-			String codenum = dto.getQrname() + "#"+String.valueOf(random);
+			String codenum = dto.getCodenum();
 			if(quizroomDAO.checkCodeNum(codenum)==1) {
 				qrdto.setCodenum(codenum);
 				break;
