@@ -45,12 +45,15 @@ public class QuizRoomServiceImpl implements QuizRoomService {
 	public MessageDTO makeRoom(QuizRoomDTO dto) {
 		qrdto = new QuizRoomDTO();
 		String codenum = dto.getCodenum();
-		while(true) {
-			if(quizroomDAO.checkCodeNum(codenum)==1) {
-				qrdto.setCodenum(codenum);
-				break;
-			}
+		
+		if(quizroomDAO.checkCodeNum(codenum)==1) {
+			qrdto.setCodenum(codenum);
 		}
+		
+		else if(quizroomDAO.checkCodeNum(codenum)==0){
+			return MessageDTO.resMessage(ResponseMessage.OVERLAP);
+		}
+		
 		qrdto.setUid(jwt.getUserID());
 		qrdto.setQrname(dto.getQrname());
 		qrdto.setEndtime(dto.getEndtime());
