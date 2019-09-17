@@ -44,9 +44,9 @@ public class QuizRoomServiceImpl implements QuizRoomService {
 	@Override
 	public MessageDTO makeRoom(QuizRoomDTO dto) {
 		qrdto = new QuizRoomDTO();
-		
+		String codenum = dto.getCodenum();
 		while(true) {
-			String codenum = dto.getCodenum();
+			// String codenum = dto.getCodenum();
 			if(quizroomDAO.checkCodeNum(codenum)==1) {
 				qrdto.setCodenum(codenum);
 				break;
