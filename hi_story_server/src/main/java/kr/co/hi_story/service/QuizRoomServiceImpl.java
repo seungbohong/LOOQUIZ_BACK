@@ -46,7 +46,6 @@ public class QuizRoomServiceImpl implements QuizRoomService {
 		qrdto = new QuizRoomDTO();
 		String codenum = dto.getCodenum();
 		while(true) {
-			// String codenum = dto.getCodenum();
 			if(quizroomDAO.checkCodeNum(codenum)==1) {
 				qrdto.setCodenum(codenum);
 				break;
@@ -57,12 +56,9 @@ public class QuizRoomServiceImpl implements QuizRoomService {
 		qrdto.setEndtime(dto.getEndtime());
 		
 		if(quizroomDAO.makeRoom(qrdto) ==1 && quizroomDAO.roomUserInit(qrdto)==1) {
-			// String result = quizroomDAO.showCodeNum(qrdto);
 			return MessageDTO.resMessage(ResponseMessage.SUCCESS);
-			//return DataDTO.resData(ResponseMessage.SUCCESS, result);
 		}
 		return MessageDTO.resMessage(ResponseMessage.FAIL);
-		//return DataDTO.resData(ResponseMessage.FAIL, null);
 	}
 	
 	@Override
