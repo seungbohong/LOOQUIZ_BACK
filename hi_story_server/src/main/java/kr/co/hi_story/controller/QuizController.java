@@ -39,9 +39,9 @@ public class QuizController {
 
 	// ���� ����
 	@DeleteMapping("deleteQ")
-	public ResponseEntity deleteQ(@RequestBody QuizDTO dto) {
+	public ResponseEntity deleteQ(@RequestParam("qid") int qid) {
 		try {
-			return new ResponseEntity<>(quizService.deleteQ(dto), HttpStatus.OK);
+			return new ResponseEntity<>(quizService.deleteQ(qid), HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.println(e);
 			return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);

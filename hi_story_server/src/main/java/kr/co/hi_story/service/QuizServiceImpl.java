@@ -22,6 +22,7 @@ import kr.co.hi_story.dto.MemberDTO;
 import kr.co.hi_story.dto.MessageDTO;
 import kr.co.hi_story.dto.ParticipationDTO;
 import kr.co.hi_story.dto.QuizDTO;
+import kr.co.hi_story.dto.QuizRoomDTO;
 import kr.co.hi_story.util.ResponseMessage;
 import kr.co.hi_story.util.jwt.JwtService;
 
@@ -62,12 +63,12 @@ public class QuizServiceImpl implements QuizService {
 	}
 
 	@Override
-	public MessageDTO deleteQ(QuizDTO dto) {
-		qdto = new QuizDTO();
-		qdto.setUid(jwt.getUserID());
-		qdto.setQid(dto.getQid());
+	public MessageDTO deleteQ(int qid) {
+		QuizDTO param = new QuizDTO();
+		param.setUid(jwt.getUserID());
+		param.setQid(qid);
 		
-		if (quizDAO.deleteQ(qdto) == 1) {
+		if (quizDAO.deleteQ(param) == 1) {
 			return MessageDTO.resMessage(ResponseMessage.SUCCESS);
 		}
 		return MessageDTO.resMessage(ResponseMessage.FAIL);
@@ -173,16 +174,23 @@ public class QuizServiceImpl implements QuizService {
 		return DataDTO.resData(ResponseMessage.FAIL, null);
 	}
 	
+	
 	@Override
 	public DataDTO regionQuizList(String rname) {
-		
+		//qdto = new QuizDTO();
+		//QuizDTO temp = new QuizDTO();
 		List<String> result = quizDAO.regionQuizList(rname);
+		// qdto.setUid(jwt.getUserID());
+		// qdto.setRname(dto.getRname());
 		
-		if (result != null) {
-			return DataDTO.resData(ResponseMessage.SUCCESS, result);
+		// List<String> result = new ArrayList<>();
+		//for (String object : rname) {
+			if (result != null) {
+				return DataDTO.resData(ResponseMessage.SUCCESS, result);
+			}
+			return DataDTO.resData(ResponseMessage.FAIL, null);
 		}
-		return DataDTO.resData(ResponseMessage.FAIL, null);
-	}
+	//}
 	
 	
 	@Override
